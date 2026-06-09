@@ -98,7 +98,7 @@ Issue	Dirty_Record_Count
 
 based on the analysis you performed, 999 and 9999 in the spending columns were not conclusively proven dirty because they occurred with frequencies similar to neighboring values. I'm only including them here because you're following the "8 issues across 6 columns" interpretation for the assignment. From a strict EDA standpoint, the first 3-rule version is the most defensible.
 
-# Missing Columns:
+### Missing Columns:
 
 | Column                 | Type | Reason                                             |
 | ---------------------- | ---- | -------------------------------------------------- |
@@ -113,3 +113,18 @@ Missingness indicators were created and values were imputed using sentinel value
 mort_acc and emp_length_years were classified as MAR because missingness is likely related to other borrower characteristics rather than occurring completely at random. Median imputation was applied to these variables.
 
 Missing values were verified using .isnull().sum() before and after imputation, confirming that all missing observations were successfully handled.
+
+### Winsorisation
+
+The comparison table shows reductions in standard deviation and maximum values after treatment, indicating successful mitigation of extreme observations without removing records.
+
+column	mean_before	std_before	max_before	mean_after	std_after	max_after
+0	npa_flag	0.000008	0.002739	1.00	0.000000	0.000000	0.0000
+1	collections_12mths_fee	32.366464	560.070667	312618.52	11.829477	77.296128	657.2202
+2	collection_recovery_fee	130.709817	2061.435988	1035421.73	55.189725	348.528316	2911.0688
+3	recoveries_inr	52.749164	818.402452	313742.97	22.139089	140.021787	1172.0600
+4	emi_advance_paid_inr	2204.312963	13599.895684	5329334.00	1708.033934	5752.164359	40329.1235
+5	expected_loss_inr	139.237678	1285.912722	189646.84	84.350827	500.602668	3990.4218
+
+The six most skewed numeric variables were identified using absolute skewness values.
+To reduce the influencer of extreme outliers while retaining all observations, Winsorization was applied by capping values below the 1st percentile and above the 99th percentile.
