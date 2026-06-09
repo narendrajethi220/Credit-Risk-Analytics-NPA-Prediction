@@ -62,6 +62,42 @@ Most houses are 1200-2500 sqft
 7. AGE vs EMP_LENGTH CONSISTENCY
 emp_length > (age - 18): 180929
 
+8 data quality issues spend across 6 columns
+| Issue No. | Column                   | Dirty Pattern               |
+| --------- | ------------------------ | --------------------------- |
+| 1         | rejection_rate_pct       | Negative values             |
+| 2         | ltv_ratio_pct            | Negative values             |
+| 3         | avg_monthly_cc_spend_inr | Value = 999                 |
+| 4         | avg_monthly_cc_spend_inr | Value = 9999                |
+| 5         | cash_advance_inr         | Value = 999                 |
+| 6         | cash_advance_inr         | Value = 9999                |
+| 7         | emp_length_years         | emp_length > age − 18       |
+| 8         | emi_to_income_ratio      | Unrealistically high values |
+
+
+| Column                   | Issue                      |
+| ------------------------ | -------------------------- |
+| rejection_rate_pct       | negative values            |
+| ltv_ratio_pct            | negative values            |
+| avg_monthly_cc_spend_inr | sentinel values 999 / 9999 |
+| cash_advance_inr         | sentinel values 999 / 9999 |
+| emp_length_years         | > age − 18                 |
+| emi_to_income_ratio      | unrealistic extreme values |
+
+
+
+Issue	Dirty_Record_Count
+0	Negative rejection_rate_pct	0
+1	Negative ltv_ratio_pct	0
+2	avg_monthly_cc_spend_inr = 999	86
+3	avg_monthly_cc_spend_inr = 9999	55
+4	cash_advance_inr = 999	75
+5	cash_advance_inr = 9999	5
+6	emp_length_years > age-18	191754
+7	emi_to_income_ratio > 5	557
+
+based on the analysis you performed, 999 and 9999 in the spending columns were not conclusively proven dirty because they occurred with frequencies similar to neighboring values. I'm only including them here because you're following the "8 issues across 6 columns" interpretation for the assignment. From a strict EDA standpoint, the first 3-rule version is the most defensible.
+
 # Missing Columns:
 
 | Column                 | Type | Reason                                             |
