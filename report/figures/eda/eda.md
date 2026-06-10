@@ -10,3 +10,39 @@ Creates synthetic samples of the minority class.
 `from imblearn.under_sampling import RandomUnderSampler`
 Reduces the number of majority-class observations
 
+
+
+###  KDE Curve
+
+KDE Curve - A Kernel Density Estimation (KDE) curve is a smooth, continuous line used to represent the probability distribution of a dataset
+
+Defaulted Mean: 660.11
+Performing Mean: 680.68
+
+Cohen's d measures how far apart the two distributions are.
+| Cohen's d | Meaning    |
+| --------- | ---------- |
+| 0.2       | Small      |
+| 0.5       | Medium     |
+| 0.8       | Large      |
+| >1.0      | Very large |
+
+A common approximation:
+Distribution Overlap = 90.31 %
+
+| d   | Overlap |
+| --- | ------- |
+| 0.2 | 92%     |
+| 0.5 | 80%     |
+| 0.8 | 69%     |
+| 1.0 | 62%     |
+| 1.5 | 45%     |
+
+
+Metric	Value
+0	Mean CIBIL (Defaulted)	660.11
+1	Mean CIBIL (Performing)	680.68
+2	Cohen's d	0.24
+3	Distribution Overlap (%)	90.31
+
+
