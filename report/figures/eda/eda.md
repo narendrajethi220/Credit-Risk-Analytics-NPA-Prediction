@@ -20,6 +20,7 @@ Defaulted Mean: 660.11
 Performing Mean: 680.68
 
 Cohen's d measures how far apart the two distributions are.
+Cohen's d = 0.243
 | Cohen's d | Meaning    |
 | --------- | ---------- |
 | 0.2       | Small      |
@@ -45,4 +46,22 @@ Metric	Value
 2	Cohen's d	0.24
 3	Distribution Overlap (%)	90.31
 
+### 12-panel histogram grid 
+To produce a 12-panel histogram grid covering all key numeric features we choose variables that represent different aspects of lending.
 
+[
+ 'loan_amnt_inr',
+    'annual_inc_inr',
+    'cibil_score',
+    'dti_pct',
+    'revol_bal_inr',
+    'avg_cur_bal_inr',
+    'total_rev_hi_lim_inr',
+    'recoveries_inr',
+    'expected_loss_inr',
+    'cash_advance_inr',
+    'cc_spend_last3m_inr',
+    'avg_monthly_cc_spend_inr' ] 
+
+
+A 12-panel histogram grid was produced to examine the distribution of key numeric variables. Several financial variables exhibited positive skewness. Features with skewness greater than 2.0 were identified and log-transformed using np.log1p() to reduce the influence of extreme values and improve suitability for regression modeling. The post-transformation skewness values were substantially lower, indicating more symmetric distributions and improved compliance with regression assumptions.
